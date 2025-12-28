@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import { useEffect, useState } from 'react';
 import FilterControls from './components/FilterControls';
 import SearchBar from './components/SearchBar';
@@ -18,21 +18,21 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Load initial tasks
+  
   useEffect(() => {
     loadTasks();
   }, []);
 
-  // Apply filters, search, and sorting
+ 
   useEffect(() => {
     let result = tasks;
 
-    // Apply status filter
+    
     if (filter !== 'all') {
       result = result.filter(task => task.status === filter);
     }
 
-    // Apply search filter
+   
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(task => 
@@ -41,7 +41,7 @@ function App() {
       );
     }
 
-    // Apply sorting
+  
     result = sortTasks(result, sortBy, sortOrder);
 
     setFilteredTasks(result);
@@ -131,14 +131,14 @@ function App() {
     }
   };
 
-  const handleSortChange = (sortBy) => {
-    if (sortBy === sortBy) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortBy(sortBy);
-      setSortOrder('asc');
-    }
-  };
+ const handleSortChange = (newSortBy) => {
+  if (newSortBy === sortBy) {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  } else {
+    setSortBy(newSortBy);
+    setSortOrder('asc');
+  }
+};
 
   return (
     <div className="app">
